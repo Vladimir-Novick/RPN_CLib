@@ -505,8 +505,6 @@ bool Operators::drop(rpn_stack& ctxt) {
 
 
 bool Operators::depth(rpn_stack& ctxt) {
-
-	CallbackFunction callFunction = Operators::pi;
 	ctxt.stack_push(ctxt, ctxt.stack_size(ctxt));
 	return true;
 }

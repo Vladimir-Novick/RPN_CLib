@@ -7,6 +7,7 @@
         UNKNOWN,
         STAR_TPARENTHESES,
         END_PARENTHESES,
+        ARIFMETICAL,
 
 
         //operators
@@ -16,16 +17,16 @@
         MINUS_OPERATOR,
         LESS,
         GREATER,
-        LESSOREQUAL,
-        GREATEOREQUAL,
-        NOTEQUAL,
+        LESS_OR_EQUAL,
+        GREATE_OR_EQUAL,
+        NOT_EQUAL,
         EQUAL,
         OR_OPERATOR,
         AND_OPERATOR,
         NOT_OPERATOR,
-        JUSTPLUS,
-        JUSTMINUS,
-        ARIFMETICAL,
+        JUST_PLUS,
+        JUST_MINUS,
+      
         DIV_OPERATOR,
         EXPONENTIATION,
         MOD_OPERATOR

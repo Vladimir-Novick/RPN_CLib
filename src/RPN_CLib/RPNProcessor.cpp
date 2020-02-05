@@ -217,7 +217,7 @@ RPNProcessor::~RPNProcessor() {
                         {
                             if ((*it)->m_Operation != END_PARENTHESES)
                             {
-                                token->m_Operation = JUSTMINUS;
+                                token->m_Operation = JUST_MINUS;
                                 token->m_sToken = tok = "~";
                             }
                         }
@@ -229,7 +229,7 @@ RPNProcessor::~RPNProcessor() {
                         {
                             if ((*it)->m_Operation != END_PARENTHESES)
                             {
-                                token->m_Operation = JUSTPLUS;
+                                token->m_Operation = JUST_PLUS;
                             }
                         }
                     }
