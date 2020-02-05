@@ -5,6 +5,7 @@
 #include "OperationMath.h"
 #include "RPN_Errors.h"
 #include "Operators.h"
+#include <map>
 
 #define RPN_CONST_PI    3.141593
 #define RPN_CONST_E     2.178282
@@ -135,6 +136,8 @@ public:
 	static bool drop(rpn_stack& ctxt);
 
 	static bool depth(rpn_stack& ctxt);
+
+	static const ActionDictType Actions;
 
 };
 

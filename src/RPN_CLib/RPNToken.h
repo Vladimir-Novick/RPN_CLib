@@ -2,6 +2,9 @@
 
 #include "pch.h"
 #include <string>
+#include "RPNTokenType.h"
+#include "RPNOperandType.h"
+#include "RPNToken.h"
 
 using namespace std;
 
@@ -13,6 +16,6 @@ public:
      RPNOperandType m_OperandType;
      RPNOperandType m_Operation;
      RPNToken();
-     RPNToken(const RPNToken& token); // Copy constructor 
+     RPNToken(const RPNToken& token); 
 };
 

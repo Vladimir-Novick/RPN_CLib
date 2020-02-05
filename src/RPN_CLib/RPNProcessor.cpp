@@ -241,15 +241,8 @@ RPNProcessor::~RPNProcessor() {
                 {
                     IsGood = false;
                     Tokens.clear();
-                    if (i < expr_Length)
-                    {
-                        throw  RPNException(OperationConvertor::Format("Invalid token type ",  expr[i]).c_str());
-                    }
-                    else
-                    {
-                        throw  RPNException(OperationConvertor::Format("Invalid Expression ", expr).c_str());
-                       
-                    }
+                    throw  RPNException(OperationConvertor::Format("Invalid Expression ", expr).c_str());
+
                 }
 
     }

@@ -20,17 +20,12 @@ using namespace std;
 
 double OperationMath::fs_sqrt(double x)
 {
-	int n;
-	double a, b;
-
 	return sqrt(x);
-
 }
 
 double OperationMath::fs_log(double x)
 {
 	return log(x);
-
 }
 
 double OperationMath::fs_log10(double x)
@@ -45,7 +40,6 @@ double OperationMath::fs_exp(double x)
 
 double OperationMath::fs_modf(double value, double* iptr)
 {
-
 	return modf(value, iptr);
 }
 
@@ -99,10 +93,7 @@ double OperationMath::fs_pi(void)
 
 double OperationMath::fs_cos(double x)
 {
-
 	return cos(x);
-
-
 }
 
 double OperationMath::fs_log2(double x)
@@ -117,27 +108,22 @@ double OperationMath::fs_exp2(double x)
 
 long double OperationMath::fs_powl(long double x, long double y)
 {
-
 	return powl(x, y);
 }
 
 long double OperationMath::fs_sqrtl(long double x)
 {
 	return sqrtl( x);
-	
 }
 
 long double OperationMath::fs_logl(long double x)
 {
 	return logl( x);
-	
-
 }
 
 long double OperationMath::fs_expl(long double x)
 {
 	return expl(x);
-
 }
 
 long double OperationMath::fs_pil(void)

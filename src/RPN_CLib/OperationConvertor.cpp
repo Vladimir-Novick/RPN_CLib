@@ -1,5 +1,6 @@
 ﻿#include "pch.h"
 
+#include "Types.h"
 #include "OperationConvertor.h"
 #include "RPNOperandType.h"
 
@@ -28,7 +29,7 @@
         return buffAsStdStr;
     }
 
-    string OperationConvertor::Format(const char* message, char& token) {
+    string OperationConvertor::Format(const char* message, char* token) {
         char buff[120];
 
         snprintf(buff, sizeof(buff), "%s -> %s", message, token);

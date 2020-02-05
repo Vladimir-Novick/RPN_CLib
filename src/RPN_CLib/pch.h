@@ -11,17 +11,7 @@
 	// add headers that you want to pre-compile here
 #include "framework.h"
 
-#include "RPNTokenType.h"
-#include "RPNOperandType.h"
-#include "RPNTokenType.h"
-#include "RPNToken.h"
-#include <string>
-#include <iterator> 
-#include <iostream>
-#include <map> 
-#include <list>
-#include <vector>
-#include "RPNException.h"
+
 
 
 
