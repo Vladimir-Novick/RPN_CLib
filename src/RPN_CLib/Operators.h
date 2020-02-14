@@ -95,6 +95,8 @@ public:
 
 	static bool or_(rpn_stack & ctxt);
 
+	static inline void stack_pop(rpn_stack& ctxt,float& b);
+
 	static bool xor_(rpn_stack& ctxt);
 
 	static bool not_(rpn_stack& ctxt);

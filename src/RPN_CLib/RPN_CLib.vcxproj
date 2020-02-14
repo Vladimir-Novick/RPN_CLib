@@ -158,7 +158,6 @@
     <ClInclude Include="RPNTokenType.h" />
     <ClInclude Include="RPNProcessor.h" />
     <ClInclude Include="RPN_Errors.h" />
-    <ClInclude Include="Stack.h" />
     <ClInclude Include="StringBuilder.h" />
     <ClInclude Include="Types.h" />
   </ItemGroup>
@@ -170,7 +169,6 @@
     <ClCompile Include="RPNException.cpp" />
     <ClCompile Include="RPNToken.cpp" />
     <ClCompile Include="RPNProcessor.cpp" />
-    <ClCompile Include="Stack.cpp" />
     <ClCompile Include="StringBuilder.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
