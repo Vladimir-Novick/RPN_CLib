@@ -510,59 +510,67 @@ bool Operators::depth(rpn_stack& ctxt) {
 	return true;
 }
 
+bool Operators::none(rpn_stack& ctxt) {
+	
+	return true;
+}
+
 const ActionDictType Operators::Actions =
 {
-    {"pi",{"pi", 0, pi}},
-	{"e",{"e", 0, e}},
+	{"(",{"(",0 , none,1}},
+    {"+",{"+", 2, sum,2}},
+	{"-",{"-", 2, substract,3}},
+	{"*",{"*", 2, times,4}},
+	{"/",{"/", 2, divide,5}},
+	{")",{")",0 , none,6}},
 
-    {"+",{"+", 2, sum}},
-	{"-",{"-", 2, substract}},
-	{"*",{"*", 2, times}},
-	{"/",{"/", 2, divide}},
-	{"mod",{"mod", 2, mod}},
-	{"abs",{"abs", 1, abs}},
+	{"=",{"=", 2, eq,7}},
+	{"!",{"!", 2, ne,8}},
+	{">",{">", 2, gt,9}},
+	{">=",{">=", 2, ge,10}},
+	{"<",{"<", 2, lt,11}},
+	{"<=",{"<=", 2, le,12}},
 
-	{"round",{"round", 2, round}},
-	{"ceil",{"ceil", 1, ceil}},
-	{"floor",{"floor", 1, floor}},
-	{"sqrt",{"sqrt", 1, sqrt}},
-	{"log",{"log", 1, log}},
-	{"log10",{"log10", 1, log10}},
-	{"exp",{"exp", 1, exp}},
-	{"fmod",{"fmod", 2, fmod}},
-	{"pow",{"pow", 2, pow}},
-	{"cos",{"cos", 1, cos}},
-	{"sin",{"sin", 1, sin}},
-	{"tan",{"tan", 1, tan}},
+	{"mod",{"mod", 2, mod,0}},
+	{"abs",{"abs", 1, abs,0}},
+    {"pi",{"pi", 0, pi,0}},
+	{"e",{"e", 0, e,0}},
+	{"round",{"round", 2, round,0}},
+	{"ceil",{"ceil", 1, ceil,0}},
+	{"floor",{"floor", 1, floor,0}},
+	{"sqrt",{"sqrt", 1, sqrt,0}},
+	{"log",{"log", 1, log,0}},
+	{"log10",{"log10", 1, log10,0}},
+	{"exp",{"exp", 1, exp,0}},
+	{"fmod",{"fmod", 2, fmod,0}},
+	{"pow",{"pow", 2, pow,0}},
+	{"cos",{"cos", 1, cos,0}},
+	{"sin",{"sin", 1, sin,0}},
+	{"tan",{"tan", 1, tan,0}},
 
-	{"eq",{"eq", 2, eq}},
-	{"ne",{"ne", 2, ne}},
-	{"gt",{"gt", 2, gt}},
-	{"ge",{"ge", 2, ge}},
-	{"lt",{"lt", 2, lt}},
-	{"le",{"le", 2, le}},
 
-	{"cmp",{"cmp", 2, cmp}},
-	{"cmp3",{"cmp3", 3, cmp3}},
-	{"index",{"index", 1, index}},
-	{"map",{"map", 5, map}},
-	{"constrain",{"constrain", 3, constrain}},
+
+	{"cmp",{"cmp", 2, cmp,0}},
+	{"cmp3",{"cmp3", 3, cmp3,0}},
+	{"index",{"index", 1, index,0}},
+	{"map",{"map", 5, map,0}},
+	{"constrain",{"constrain", 3, constrain,0}},
 
 	// Boolean
-	{"and",{"and", 2, and_}},
-	{"or",{"or", 2, or_}},
-	{"xor",{"xor", 2, xor_}},
-	{"not",{"not", 1, not_}},
+	{"and",{"and", 2, and_,0}},
+	{"or",{"or", 2, or_,0}},
+	{"xor",{"xor", 2, xor_,0}},
+	{"not",{"not", 1, not_,0}},
 
 
-	{"dup",{"dup", 1, dup}},
-	{"dup2",{"dup2", 2, dup2}},
-	{"swap",{"swap", 2, swap}},
-	{"rot",{"rot", 3, rot}},
-	{"unrot",{"unrot", 3, unrot}},
-	{"drop",{"drop", 1, drop}},
-	{"over",{"over", 2, over}},
-	{"depth",{"depth", 0, depth}},
+	{"dup",{"dup", 1, dup,0}},
+	{"dup2",{"dup2", 2, dup2,0}},
+	{"swap",{"swap", 2, swap,0}},
+	{"rot",{"rot", 3, rot,0}},
+	{"unrot",{"unrot", 3, unrot,0}},
+	{"drop",{"drop", 1, drop,0}},
+	{"over",{"over", 2, over,0}},
+	{"depth",{"depth", 0, depth,0}},
 
 	{"ifn",{"ifn", 3, ifn}}
 

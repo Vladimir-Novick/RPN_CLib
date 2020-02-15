@@ -18,6 +18,7 @@ struct OperatorType
     string name;
     int arguments;
     CallbackFunction f;
+    int index;
 };
 
 typedef map<string, OperatorType>  ActionDictType;

@@ -139,6 +139,8 @@ public:
 
 	static bool depth(rpn_stack& ctxt);
 
+	static bool none(rpn_stack& ctxt);
+
 	static const ActionDictType Actions;
 
 };
