@@ -3,6 +3,7 @@
 #include "Types.h"
 #include "OperationConvertor.h"
 #include "RPNOperandType.h"
+#include "Operators.h"
 
 #ifdef _DEBUG
 #define _CRTDBG_MAP_ALLOC
@@ -37,15 +38,7 @@
         return buffAsStdStr;
     }
 
-    const char OperationConvertor::operators[] = { '+', '-', '*', '/', '<', '>', '=', '%', '^', '(', ')', '~', 'x', '÷' };
-    const string OperationConvertor::doubleOperators[] = { "<>", ">=", "<=", "%=", "/=","==","||","&&" };
-    const char OperationConvertor::doubleOperatorsChar[] = { '<','>', '>','=', '<','=', '%','=', '/','=','=','=','|','|','&','&' };
 
-    RPNOperandType OperationConvertor::GetOperationType(string str) {
-         OperationDictionaryType::const_iterator ret1 = OperationConvertor::GetOperation.find(str);
-        if (ret1 != OperationConvertor::GetOperation.end()) return ret1->second;
-        return UNKNOWN;
-    }
 
     bool OperationConvertor::IsWhiteSpace(char& chr)
     {
@@ -53,62 +46,9 @@
         return false;
     }
 
-    bool OperationConvertor::isOperation(char& c)
-    {
-
-        for (int i = 0; OperationConvertor::operators[i] != 0; i++)
-            if (c == OperationConvertor::operators[i])
-                return true;
-
-        return false;
-    }
-
-    bool OperationConvertor::isDoubleOperation(string& c)
-    {
-        for (unsigned int i = 0; OperationConvertor::doubleOperators->size() > i; i++)
-            if (c == OperationConvertor::doubleOperators[i])
-                return true;
-
-        return false;
-    }
-
-    bool OperationConvertor::isDoubleOperation(char& c, char& c2)
-    {
-        for (unsigned int i = 0; OperationConvertor::doubleOperators->size() > i; i = i + 2)
-            if (c == OperationConvertor::doubleOperatorsChar[i] &&
-                c2 == OperationConvertor::doubleOperatorsChar[i + 1]
-
-                )
-                return true;
-
-        return false;
-    }
 
 
 
 
-    const  OperationDictionaryType OperationConvertor::GetOperation = {
-{ "@",UNKNOWN},
-{ "*",MULITIPLY},
-{ "/",DIVIDE},
-{ "÷",DIVIDE},
-{ "/=",DIV_OPERATOR},
-{ "^",EXPONENTIATION },
-{ "%=",MOD_OPERATOR },
-{ "+",PLUS_OPERATOR},
-{ "-",MINUS_OPERATOR},
-{ "~",JUST_MINUS},
-{ "<",LESS},
-{ ">",GREATER},
-{ "<=",LESS_OR_EQUAL},
-{ ">=",GREATE_OR_EQUAL},
-{ "!=",NOT_EQUAL},
-{ "==",EQUAL},
-{ "=",EQUAL},
-{ "||",OR_OPERATOR},
-{ "&&",AND_OPERATOR},
-{ "!",NOT_OPERATOR},
-{ "(",STAR_TPARENTHESES },
-{ ")",END_PARENTHESES }
 
-    };
+

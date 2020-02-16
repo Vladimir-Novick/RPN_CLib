@@ -515,62 +515,83 @@ bool Operators::none(rpn_stack& ctxt) {
 	return true;
 }
 
+OperatorType Operators::GetOperation(char& c, char& c2) {
+	string f;
+	f.push_back(c);
+	f.push_back(c2);
+	auto rez = Actions.find(f);
+	if (rez == Actions.end()) {
+		f.clear();
+		f.push_back(c);
+		rez = Actions.find(f);
+	}
+	if (rez != Actions.end()) {
+		return rez->second;
+	}
+	return { "(",0 , none,0,UNKNOWN,false };
+}
+
 const ActionDictType Operators::Actions =
 {
-	{"(",{"(",0 , none,1}},
-    {"+",{"+", 2, sum,2}},
-	{"-",{"-", 2, substract,3}},
-	{"*",{"*", 2, times,4}},
-	{"/",{"/", 2, divide,5}},
-	{")",{")",0 , none,6}},
-
-	{"=",{"=", 2, eq,7}},
-	{"!",{"!", 2, ne,8}},
-	{">",{">", 2, gt,9}},
-	{">=",{">=", 2, ge,10}},
-	{"<",{"<", 2, lt,11}},
-	{"<=",{"<=", 2, le,12}},
-
-	{"mod",{"mod", 2, mod,0}},
-	{"abs",{"abs", 1, abs,0}},
-    {"pi",{"pi", 0, pi,0}},
-	{"e",{"e", 0, e,0}},
-	{"round",{"round", 2, round,0}},
-	{"ceil",{"ceil", 1, ceil,0}},
-	{"floor",{"floor", 1, floor,0}},
-	{"sqrt",{"sqrt", 1, sqrt,0}},
-	{"log",{"log", 1, log,0}},
-	{"log10",{"log10", 1, log10,0}},
-	{"exp",{"exp", 1, exp,0}},
-	{"fmod",{"fmod", 2, fmod,0}},
-	{"pow",{"pow", 2, pow,0}},
-	{"cos",{"cos", 1, cos,0}},
-	{"sin",{"sin", 1, sin,0}},
-	{"tan",{"tan", 1, tan,0}},
+	{"(",{"(",0 , none,1,START_TPARENTHESES,false}},
+	{"+",{"+", 2, sum,2,PLUS_OPERATOR,false}},
+	{"-",{"-", 2, substract,3,MINUS_OPERATOR,false}},
+	{"*",{"*", 2, times,4,MULITIPLY,false}},
+	{"/",{"/", 2, divide,5,DIVIDE,false}},
+	{"÷",{"", 2, divide,5,DIVIDE,false}},
+	{")",{")",0 , none,6,END_PARENTHESES,false}},
+	{"=",{"=", 2, eq,7,EQUAL,false}},
+	{"==",{"==", 2, eq,7,EQUAL,true}},
 
 
-
-	{"cmp",{"cmp", 2, cmp,0}},
-	{"cmp3",{"cmp3", 3, cmp3,0}},
-	{"index",{"index", 1, index,0}},
-	{"map",{"map", 5, map,0}},
-	{"constrain",{"constrain", 3, constrain,0}},
-
-	// Boolean
-	{"and",{"and", 2, and_,0}},
-	{"or",{"or", 2, or_,0}},
-	{"xor",{"xor", 2, xor_,0}},
-	{"not",{"not", 1, not_,0}},
+	{">",{">", 2, gt,8,GREATER,false}},
+	{">=",{">=", 2, ge,9,GREATE_OR_EQUAL,false}},
+	{"<",{"<", 2, lt,10,LESS,false}},
+	{"<=",{"<=", 2, le,11,LESS_OR_EQUAL,true}},
+	{"<>",{"<>", 2, ne,7,NOT_EQUAL,true}},
+	{"!=",{"!=", 2, ne,7,NOT_EQUAL,true}},
 
 
-	{"dup",{"dup", 1, dup,0}},
-	{"dup2",{"dup2", 2, dup2,0}},
-	{"swap",{"swap", 2, swap,0}},
-	{"rot",{"rot", 3, rot,0}},
-	{"unrot",{"unrot", 3, unrot,0}},
-	{"drop",{"drop", 1, drop,0}},
-	{"over",{"over", 2, over,0}},
-	{"depth",{"depth", 0, depth,0}},
+	{"^",{"^", 1, exp,12,EXPONENTIATION,false}},
+	{"&&",{"&&", 2, and_,13,AND_OPERATOR,true}},
+	{"||",{"||", 2, or_,14,OR_OPERATOR,true}},
+	{"!",{"!", 1, not_,15,NOT_OPERATOR,false}},
+};
+
+const ActionDictType Operators::Functions = {
+
+
+	{"mod",{"mod", 2, mod,0,UNKNOWN,false}},
+	{"abs",{"abs", 1, abs,0,UNKNOWN,false}},
+    {"pi",{"pi", 0, pi,0,UNKNOWN,false}},
+	{"e",{"e", 0, e,0,UNKNOWN,false}},
+	{"round",{"round", 2, round,0,UNKNOWN,false}},
+	{"ceil",{"ceil", 1, ceil,0,UNKNOWN,false}},
+	{"floor",{"floor", 1, floor,0,UNKNOWN,false}},
+	{"sqrt",{"sqrt", 1, sqrt,0,UNKNOWN,false}},
+	{"log",{"log", 1, log,0,UNKNOWN,false}},
+	{"log10",{"log10", 1, log10,0,UNKNOWN,false}},
+	{"exp",{"exp", 1, exp,0,UNKNOWN,false}},
+	{"fmod",{"fmod", 2, fmod,0,UNKNOWN,false}},
+	{"pow",{"pow", 2, pow,0,UNKNOWN,false}},
+	{"cos",{"cos", 1, cos,0,UNKNOWN,false}},
+	{"sin",{"sin", 1, sin,0,UNKNOWN,false}},
+	{"tan",{"tan", 1, tan,0,UNKNOWN,false}},
+
+	{"cmp",{"cmp", 2, cmp,0,UNKNOWN,false}},
+	{"cmp3",{"cmp3", 3, cmp3,0,UNKNOWN,false}},
+	{"index",{"index", 1, index,0,UNKNOWN,false}},
+	{"map",{"map", 5, map,0,UNKNOWN,false}},
+	{"constrain",{"constrain", 3, constrain,0,UNKNOWN,false}},
+
+	{"dup",{"dup", 1, dup,0,UNKNOWN,false}},
+	{"dup2",{"dup2", 2, dup2,0,UNKNOWN,false}},
+	{"swap",{"swap", 2, swap,0,UNKNOWN,false}},
+	{"rot",{"rot", 3, rot,0,UNKNOWN,false}},
+	{"unrot",{"unrot", 3, unrot,0,UNKNOWN,false}},
+	{"drop",{"drop", 1, drop,0,UNKNOWN,false}},
+	{"over",{"over", 2, over,0,UNKNOWN,false}},
+	{"depth",{"depth", 0, depth,0,UNKNOWN,false}},
 
 	{"ifn",{"ifn", 3, ifn}}
 

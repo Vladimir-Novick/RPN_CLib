@@ -19,6 +19,8 @@ struct OperatorType
     int arguments;
     CallbackFunction f;
     int index;
+    RPNOperandType dataType;
+    bool isDoubleChar;
 };
 
 typedef map<string, OperatorType>  ActionDictType;

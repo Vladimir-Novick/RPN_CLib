@@ -143,5 +143,9 @@ public:
 
 	static const ActionDictType Actions;
 
+	static const ActionDictType Functions;
+
+	static OperatorType GetOperation(char& c, char& c2);
+
 };
 

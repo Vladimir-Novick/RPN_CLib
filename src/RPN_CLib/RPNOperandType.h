@@ -5,7 +5,7 @@
     enum RPNOperandType
     {
         UNKNOWN,
-        STAR_TPARENTHESES,
+        START_TPARENTHESES,
         END_PARENTHESES,
         ARIFMETICAL,
 
