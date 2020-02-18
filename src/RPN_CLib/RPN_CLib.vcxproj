@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
+    <ClInclude Include="MatchUtils.h" />
     <ClInclude Include="OperationConvertor.h" />
     <ClInclude Include="OperationMath.h" />
     <ClInclude Include="Operators.h" />
@@ -162,6 +163,7 @@
     <ClInclude Include="Types.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="MatchUtils.cpp" />
     <ClCompile Include="OperationConvertor.cpp" />
     <ClCompile Include="OperationMath.cpp" />
     <ClCompile Include="Operators.cpp" />
