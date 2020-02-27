@@ -6,21 +6,25 @@
 #include <stack>
 #include "RPNOperandType.h"
 
-using namespace std;
+namespace RPN {
+
+    using namespace std;
 
 
-typedef stack<float>  rpn_stack;
-typedef map<string, RPNOperandType>  OperationDictionaryType;
-typedef bool (*CallbackFunction)(rpn_stack &);
+    typedef stack<float>  rpn_stack;
+    typedef map<string, RPNOperandType>  OperationDictionaryType;
+    typedef bool (*CallbackFunction)(rpn_stack&);
 
-struct OperatorType
-{
-    string name;
-    int arguments;
-    CallbackFunction f;
-    int index;
-    RPNOperandType dataType;
-    bool isDoubleChar;
-};
+    struct OperatorType
+    {
+        string name;
+        int arguments;
+        CallbackFunction f;
+        int index;
+        RPNOperandType dataType;
+        bool isDoubleChar;
+    };
 
-typedef map<string, OperatorType>  ActionDictType;
+    typedef map<string, OperatorType>  ActionDictType;
+
+}

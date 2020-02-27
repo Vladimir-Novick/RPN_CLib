@@ -19,19 +19,25 @@
 #include "Types.h"
 
 
-using namespace std;
+namespace RPN {
 
 
-class OperationConvertor
-{
+	using namespace std;
 
-  public:
 
-	  static string Format(const char * message, string& token);
-	  static string Format(const char* message, char* token);
+	class RPN_Utils
+	{
 
-	  static bool IsWhiteSpace(char& chr);
+	public:
 
-};
+		static string Format(const char* message, string& token);
+		static string Format(const char* message, string& token, string& expression);
+		static string Format(const char* message, char* token);
+
+		static bool IsWhiteSpace(char& chr);
+
+	};
+
+}
 
 

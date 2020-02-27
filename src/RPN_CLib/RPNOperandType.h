@@ -2,9 +2,12 @@
 
 #include "pch.h"
 
+namespace RPN {
+
     enum RPNOperandType
     {
         UNKNOWN,
+        VARIABLE,
         START_TPARENTHESES,
         END_PARENTHESES,
         ARIFMETICAL,
@@ -26,8 +29,10 @@
         NOT_OPERATOR,
         JUST_PLUS,
         JUST_MINUS,
-      
+
         DIV_OPERATOR,
         EXPONENTIATION,
         MOD_OPERATOR
     };
+
+}

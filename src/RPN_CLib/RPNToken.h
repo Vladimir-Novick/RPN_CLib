@@ -6,16 +6,20 @@
 #include "RPNOperandType.h"
 #include "RPNToken.h"
 
-using namespace std;
+namespace RPN {
 
-class RPNToken
-{
-public:
-     RPNTokenType m_sType;
-     string m_sToken;
-     RPNOperandType m_OperandType;
-     RPNOperandType m_Operation;
-     RPNToken();
-     RPNToken(const RPNToken& token); 
-};
+    using namespace std;
+
+    class RPNToken
+    {
+    public:
+        RPNTokenType m_sType;
+        string m_sToken;
+        RPNOperandType m_OperandType;
+        RPNOperandType m_Operation;
+        RPNToken();
+        RPNToken(const RPNToken& token);
+    };
+
+}
 

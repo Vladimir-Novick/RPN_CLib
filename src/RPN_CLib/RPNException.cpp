@@ -2,15 +2,23 @@
 #include "RPNException.h"
 
 
-using namespace std;
+namespace RPN {
 
-RPNException::RPNException(char const* const message) throw()
-    : runtime_error(message)
-{
+
+    using namespace std;
+
+    RPNException::RPNException(char const* const message) throw()
+        : runtime_error(message)
+    {
+
+    }
+
+    char const* RPNException::what() const throw()
+    {
+        return exception::what();
+    }
 
 }
 
-char const* RPNException::what() const throw()
-{
-    return exception::what();
-}
+
+

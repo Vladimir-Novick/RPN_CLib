@@ -16,13 +16,16 @@
 #define new DBG_NEW
 #endif
 
+namespace RPN {
 
-RPNToken::RPNToken() {
-}
 
-RPNToken::RPNToken(const RPNToken& token) {
-    m_sType = token.m_sType;
-    m_sToken = token.m_sToken;
-    m_OperandType = token.m_OperandType;
-    m_Operation = token.m_Operation;
+    RPNToken::RPNToken() {
+    }
+
+    RPNToken::RPNToken(const RPNToken& token) {
+        m_sType = token.m_sType;
+        m_sToken = token.m_sToken;
+        m_OperandType = token.m_OperandType;
+        m_Operation = token.m_Operation;
+    }
 }
