@@ -518,7 +518,7 @@ namespace RPN {
 		return true;
 	}
 
-	OperatorType Operators::GetOperation(char& c, char& c2) {
+	ActionType Operators::GetOperation(char& c, char& c2) {
 		string f;
 		f.push_back(c);
 		f.push_back(c2);
@@ -534,6 +534,16 @@ namespace RPN {
 		return { "(",0 , none,0,UNKNOWN,false };
 	}
 
+	const int Operators::traslTable[6][7] = {
+//   V ( + - * /  )
+	{0,1,1,1,1,1,-1}, // V
+	{-1,1,1,1,1,1,3}, // (
+	{4,1,2,2,1,1,4},  // +
+	{4,1,2,2,1,1,4},  // -
+	{4,1,4,4,2,2,4},  // *
+	{4,1,4,4,2,2,4}   // /
+	};
+
 	const ActionDictType Operators::Actions =
 	{
 		{"(",{"(",0 , none,1,START_TPARENTHESES,false}},
@@ -541,25 +551,29 @@ namespace RPN {
 		{"-",{"-", 2, substract,3,MINUS_OPERATOR,false}},
 		{"*",{"*", 2, times,4,MULITIPLY,false}},
 		{"/",{"/", 2, divide,5,DIVIDE,false}},
-		{"÷",{"", 2, divide,5,DIVIDE,false}},
 		{")",{")",0 , none,6,END_PARENTHESES,false}},
-		{"=",{"=", 2, eq,7,EQUAL,false}},
-		{"==",{"==", 2, eq,7,EQUAL,true}},
+		{"=",{"=", 2, eq,9,EQUAL,false}},
+		{"==",{"==", 2, eq,10,EQUAL,true}},
 
 
-		{">",{">", 2, gt,8,GREATER,false}},
-		{">=",{">=", 2, ge,9,GREATE_OR_EQUAL,false}},
-		{"<",{"<", 2, lt,10,LESS,false}},
-		{"<=",{"<=", 2, le,11,LESS_OR_EQUAL,true}},
-		{"<>",{"<>", 2, ne,7,NOT_EQUAL,true}},
-		{"!=",{"!=", 2, ne,7,NOT_EQUAL,true}},
+		{">",{">", 2, gt,11,GREATER,false}},
+		{">=",{">=", 2, ge,12,GREATE_OR_EQUAL,false}},
+		{"<",{"<", 2, lt,13,LESS,false}},
+		{"<=",{"<=", 2, le,14,LESS_OR_EQUAL,true}},
+		{"<>",{"<>", 2, ne,15,NOT_EQUAL,true}},
+		{"!=",{"!=", 2, ne,16,NOT_EQUAL,true}},
 
 
-		{"^",{"^", 1, exp,12,EXPONENTIATION,false}},
-		{"&&",{"&&", 2, and_,13,AND_OPERATOR,true}},
-		{"||",{"||", 2, or_,14,OR_OPERATOR,true}},
-		{"!",{"!", 1, not_,15,NOT_OPERATOR,false}},
+		{"^",{"^", 1, exp,17,EXPONENTIATION,false}},
+		{"&&",{"&&", 2, and_,18,AND_OPERATOR,true}},
+		{"||",{"||", 2, or_,19,OR_OPERATOR,true}},
+		{"!",{"!", 1, not_,20,NOT_OPERATOR,false}},
 	};
+
+
+	const ActionType Operators::JUST_MINUS_ACTION = {"-", 7, substract,3,JUST_MINUS,false} ;
+	const ActionType Operators::JUST_PLUS_ACTION = { "+", 8, sum,2,JUST_PLUS,false };
+	const ActionType Operators::VARIABLE_ACTION = { "", 2, none,0,UNKNOWN,false };
 
 	const ActionDictType Operators::Functions = {
 

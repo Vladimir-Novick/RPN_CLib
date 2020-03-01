@@ -15,7 +15,7 @@ namespace RPN {
     typedef map<string, RPNOperandType>  OperationDictionaryType;
     typedef bool (*CallbackFunction)(rpn_stack&);
 
-    struct OperatorType
+    struct ActionType
     {
         string name;
         int arguments;
@@ -25,6 +25,6 @@ namespace RPN {
         bool isDoubleChar;
     };
 
-    typedef map<string, OperatorType>  ActionDictType;
+    typedef map<string, ActionType>  ActionDictType;
 
 }

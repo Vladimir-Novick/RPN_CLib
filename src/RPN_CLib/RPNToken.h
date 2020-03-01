@@ -5,6 +5,7 @@
 #include "RPNTokenType.h"
 #include "RPNOperandType.h"
 #include "RPNToken.h"
+#include "Types.h"
 
 namespace RPN {
 
@@ -16,7 +17,7 @@ namespace RPN {
         RPNTokenType m_sType;
         string m_sToken;
         RPNOperandType m_OperandType;
-        RPNOperandType m_Operation;
+        ActionType m_Action;
         RPNToken();
         RPNToken(const RPNToken& token);
     };

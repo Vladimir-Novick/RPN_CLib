@@ -145,9 +145,15 @@ namespace RPN {
 
 		static const ActionDictType Actions;
 
+		static const ActionType JUST_MINUS_ACTION;
+		static const ActionType JUST_PLUS_ACTION;
+		static const ActionType VARIABLE_ACTION;
+
 		static const ActionDictType Functions;
 
-		static OperatorType GetOperation(char& c, char& c2);
+		static ActionType GetOperation(char& c, char& c2);
+
+		static const int traslTable[6][7];
 
 	};
 
