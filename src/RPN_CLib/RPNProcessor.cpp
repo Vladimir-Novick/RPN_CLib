@@ -268,7 +268,7 @@ namespace RPN {
 				token->m_sToken = tok;
 				token->m_OperandType = ARIFMETICAL;
 				token->m_Action = action;
-				Tokens.push_back(token);
+
 
 
 				if (action.dataType != UNKNOWN)
@@ -277,12 +277,14 @@ namespace RPN {
 					if (token->m_Action.dataType == MINUS_OPERATOR)
 					{
 						if (Tokens.size() == 0) {
+							token->m_sToken = "~";
 							token->m_Action = Operators::JUST_MINUS_ACTION;
 						}
 						else {
 							auto it = Tokens.back();
-							if ((((it)->m_sType == OPERAND)))
-							{
+							
+							if (((it->m_sType == OPERAND && it->m_Action.dataType != END_PARENTHESES)))
+							{   token->m_sToken = "~";
 								token->m_Action = Operators::JUST_MINUS_ACTION;
 							}
 						}
@@ -291,16 +293,19 @@ namespace RPN {
 					{
 						if (Tokens.size() == 0) {
 							token->m_Action = Operators::JUST_PLUS_ACTION;
+							
 						}
 						else {
 							auto it = Tokens.back();
 							if ((it)->m_sType == OPERAND)
 							{
+								
 								token->m_Action = Operators::JUST_PLUS_ACTION;
 							}
 						}
 					}
 
+					Tokens.push_back(token);
 					i++;
 					if (i > expr_Length - 1) { break; }
 					continue;
@@ -326,7 +331,7 @@ namespace RPN {
 
 
 
-	string RPN::RPNProcessor::Prepare()
+	void RPN::RPNProcessor::Prepare()
 	{
 		string ret = "";
 		RPNToken* t1;
@@ -448,32 +453,24 @@ namespace RPN {
 			}
 		}
 
-		return GetRPN_Tokens();
 
 	}
 
 
-	string RPN::RPNProcessor::PrepareTokens()
+	void RPN::RPNProcessor::PrepareTokens()
 	{
 		string ret = "";
 		if (!m_expression.empty()) {
 			ClearMemory();
 			MakeTokens(m_expression, m_Tokens);
-			m_arguments.clear();
-			for (auto item = m_Tokens.begin(); item != m_Tokens.end(); item++) {
-				if ((*item)->m_sType = ALPHA) {
-					m_arguments.push_back((*item)->m_sToken);
-				}
-			}
 		}
 
-		return GetTokens_String();
 
 	}
 
 
 
-	string RPN::RPNProcessor::GetTokens_String()
+	string RPN::RPNProcessor::GetTokens()
 	{
 		string ret = "";
 		for (auto item = m_Tokens.begin(); item != m_Tokens.end(); item++) {

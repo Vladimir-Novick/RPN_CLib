@@ -19,7 +19,8 @@ namespace UnitTest
 		{
 			string sourceString = "((15 / (7 - (A + 1))) * 3) - (B + (1 + 1))";
 			RPNProcessor processor(sourceString);
-			auto ret = processor.PrepareTokens();
+			processor.PrepareTokens();
+			auto ret = processor.GetTokens();
 
 			log("Prepare Tokens > source: ", sourceString);
 			log("Prepare Tokens > target: ", ret);
@@ -32,7 +33,8 @@ namespace UnitTest
 		{
 			string sourceString = "(a*b+c*d)/(a-d)+b*c";
 			RPNProcessor processor(sourceString);
-			auto ret = processor.PrepareTokens();
+			processor.PrepareTokens();
+			auto ret = processor.GetTokens();
 
 			log("Prepare Tokens > source: ", sourceString);
 			log("Prepare Tokens > target: ", ret);
@@ -55,8 +57,10 @@ namespace UnitTest
 		{
 			string sourceString = "(a*b+c*d)/(a-d)+b*c";
 			RPNProcessor processor(sourceString);
-			auto tokens = processor.PrepareTokens();
-			auto ret = processor.Prepare();
+			processor.PrepareTokens();
+			auto tokens = processor.GetTokens();
+			processor.Prepare();
+			auto ret = processor.GetRPN_Tokens();
 
 			log("Prepare Tokens > source: ", sourceString);
 			log("Prepare Tokens > target: ", tokens);
@@ -68,8 +72,10 @@ namespace UnitTest
 		{
 			string sourceString = "(a+b)/(c+d)";
 			RPNProcessor processor(sourceString);
-			auto tokens = processor.PrepareTokens();
-			auto ret = processor.Prepare();
+			processor.PrepareTokens();
+			auto tokens = processor.GetTokens();
+			processor.Prepare();
+			auto ret = processor.GetRPN_Tokens();
 
 			log("Prepare Tokens > source: ", sourceString);
 			log("Prepare Tokens > target: ", tokens);
@@ -82,8 +88,10 @@ namespace UnitTest
 		{
 			string sourceString = "a*b*c*d";
 			RPNProcessor processor(sourceString);
-			auto tokens = processor.PrepareTokens();
-			auto ret = processor.Prepare();
+			processor.PrepareTokens();
+			auto tokens = processor.GetTokens();
+			processor.Prepare();
+			auto ret = processor.GetRPN_Tokens();
 
 			log("Prepare Tokens > source: ", sourceString);
 			log("Prepare Tokens > target: ", tokens);
@@ -95,8 +103,10 @@ namespace UnitTest
 		{
 			string sourceString = "c*(a+b)/d";
 			RPNProcessor processor(sourceString);
-			auto tokens = processor.PrepareTokens();
-			auto ret = processor.Prepare();
+			processor.PrepareTokens();
+			auto tokens = processor.GetTokens();
+			processor.Prepare();
+			auto ret = processor.GetRPN_Tokens();
 
 			log("Prepare Tokens > source: ", sourceString);
 			log("Prepare Tokens > target: ", tokens);
@@ -108,8 +118,10 @@ namespace UnitTest
 		{
 			string sourceString = "(a*b+c)*d*(e/f)";
 			RPNProcessor processor(sourceString);
-			auto tokens = processor.PrepareTokens();
-			auto ret = processor.Prepare();
+			processor.PrepareTokens();
+			auto tokens = processor.GetTokens();
+			processor.Prepare();
+			auto ret = processor.GetRPN_Tokens();
 
 			log("Prepare Tokens > source: ", sourceString);
 			log("Prepare Tokens > target: ", tokens);
@@ -121,8 +133,25 @@ namespace UnitTest
 		{
 			string sourceString = "a+b*(c-d/(10+x)+y)-e";
 			RPNProcessor processor(sourceString);
-			auto tokens = processor.PrepareTokens();
-			auto ret = processor.Prepare();
+			processor.PrepareTokens();
+			auto tokens = processor.GetTokens();
+			processor.Prepare();
+			auto ret = processor.GetRPN_Tokens();
+
+			log("Prepare Tokens > source: ", sourceString);
+			log("Prepare Tokens > target: ", tokens);
+			log("RPN String > target: ", ret);
+			Assert::AreEqual("a b c d 10 x + / - y + * + e - ", ret.c_str());
+		};
+
+		TEST_METHOD(JustMinus)
+		{
+			string sourceString = "-a+b*(-c-d/(-10+x)+y)-e";
+			RPNProcessor processor(sourceString);
+			processor.PrepareTokens();
+			auto tokens = processor.GetTokens();
+			processor.Prepare();
+			auto ret = processor.GetRPN_Tokens();
 
 			log("Prepare Tokens > source: ", sourceString);
 			log("Prepare Tokens > target: ", tokens);

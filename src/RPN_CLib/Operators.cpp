@@ -64,6 +64,14 @@ namespace RPN {
 		return true;
 	}
 
+	bool Operators::just_minus(rpn_stack& ctxt) {
+		float a;
+
+		stack_pop(ctxt, a);
+		ctxt.push(-a );
+		return true;
+	}
+
 	bool Operators::times(rpn_stack& ctxt) {
 		float a, b;
 		stack_pop(ctxt, b);
@@ -534,44 +542,48 @@ namespace RPN {
 		return { "(",0 , none,0,UNKNOWN,false };
 	}
 
-	const int Operators::traslTable[6][7] = {
-//   V ( + - * /  )
-	{0,1,1,1,1,1,-1}, // V
-	{-1,1,1,1,1,1,3}, // (
-	{4,1,2,2,1,1,4},  // +
-	{4,1,2,2,1,1,4},  // -
-	{4,1,4,4,2,2,4},  // *
-	{4,1,4,4,2,2,4}   // /
+	const int Operators::traslTable[7][8] = {
+//   V  ( + - ~ * /  )
+	{0, 1,1,1,1,1,1,-1}, // V
+	{-1,1,1,1,1,1,1, 3}, // (
+	{4, 1,2,2,2,1,1, 4},  // +
+	{4, 1,2,2,2,1,1, 4},  // -
+	{4, 1,2,2,2,1,1, 4},  // -
+	{4, 1,4,4,4,2,2, 4},  // *
+	{4, 1,4,4,4,2,2, 4}   // /
 	};
+
+	const ActionType Operators::JUST_MINUS_ACTION = { "~", 1, just_minus,4,JUST_MINUS,false };
 
 	const ActionDictType Operators::Actions =
 	{
 		{"(",{"(",0 , none,1,START_TPARENTHESES,false}},
 		{"+",{"+", 2, sum,2,PLUS_OPERATOR,false}},
 		{"-",{"-", 2, substract,3,MINUS_OPERATOR,false}},
-		{"*",{"*", 2, times,4,MULITIPLY,false}},
-		{"/",{"/", 2, divide,5,DIVIDE,false}},
-		{")",{")",0 , none,6,END_PARENTHESES,false}},
-		{"=",{"=", 2, eq,9,EQUAL,false}},
-		{"==",{"==", 2, eq,10,EQUAL,true}},
+	    {"~",{ "~", 1, just_minus,4,JUST_MINUS,false }},
+		{"*",{"*", 2, times,5,MULITIPLY,false}},
+		{"/",{"/", 2, divide,6,DIVIDE,false}},
+		{")",{")",0 , none,7,END_PARENTHESES,false}},
+		//{"=",{"=", 2, eq,9,EQUAL,false}},
+		//{"==",{"==", 2, eq,10,EQUAL,true}},
 
 
-		{">",{">", 2, gt,11,GREATER,false}},
-		{">=",{">=", 2, ge,12,GREATE_OR_EQUAL,false}},
-		{"<",{"<", 2, lt,13,LESS,false}},
-		{"<=",{"<=", 2, le,14,LESS_OR_EQUAL,true}},
-		{"<>",{"<>", 2, ne,15,NOT_EQUAL,true}},
-		{"!=",{"!=", 2, ne,16,NOT_EQUAL,true}},
+		//{">",{">", 2, gt,11,GREATER,false}},
+		//{">=",{">=", 2, ge,12,GREATE_OR_EQUAL,false}},
+		//{"<",{"<", 2, lt,13,LESS,false}},
+		//{"<=",{"<=", 2, le,14,LESS_OR_EQUAL,true}},
+		//{"<>",{"<>", 2, ne,15,NOT_EQUAL,true}},
+		//{"!=",{"!=", 2, ne,16,NOT_EQUAL,true}},
 
 
-		{"^",{"^", 1, exp,17,EXPONENTIATION,false}},
-		{"&&",{"&&", 2, and_,18,AND_OPERATOR,true}},
-		{"||",{"||", 2, or_,19,OR_OPERATOR,true}},
-		{"!",{"!", 1, not_,20,NOT_OPERATOR,false}},
+		//{"^",{"^", 1, exp,17,EXPONENTIATION,false}},
+		//{"&&",{"&&", 2, and_,18,AND_OPERATOR,true}},
+		//{"||",{"||", 2, or_,19,OR_OPERATOR,true}},
+		//{"!",{"!", 1, not_,20,NOT_OPERATOR,false}},
 	};
 
 
-	const ActionType Operators::JUST_MINUS_ACTION = {"-", 7, substract,3,JUST_MINUS,false} ;
+	
 	const ActionType Operators::JUST_PLUS_ACTION = { "+", 8, sum,2,JUST_PLUS,false };
 	const ActionType Operators::VARIABLE_ACTION = { "", 2, none,0,UNKNOWN,false };
 

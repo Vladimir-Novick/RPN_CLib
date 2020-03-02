@@ -32,6 +32,8 @@ namespace RPN {
 
 		static bool substract(rpn_stack& ctxt);
 
+		static bool just_minus(rpn_stack& ctxt);
+
 		static bool times(rpn_stack& ctxt);
 
 		static bool divide(rpn_stack& ctxt);
@@ -153,7 +155,7 @@ namespace RPN {
 
 		static ActionType GetOperation(char& c, char& c2);
 
-		static const int traslTable[6][7];
+		static const int traslTable[7][8];
 
 	};
 

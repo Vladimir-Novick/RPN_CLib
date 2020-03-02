@@ -54,14 +54,14 @@ namespace RPN {
 		/// Prepares this instance. Translatad to RPN notation
 		/// </summary>
 		/// <returns></returns>
-		string Prepare();
+		void Prepare();
 
 		/// <summary>
 		///   get all tokens without compilation.
 		/// </summary>
 		/// <returns></returns>
-		string PrepareTokens();
-		string GetTokens_String();
+		void PrepareTokens();
+		string GetTokens();
 		string GetRPN_Tokens();
 
 	};
