@@ -427,6 +427,12 @@ namespace RPN {
 						stackTranslation.pop();
 						RPN_Tokens.push_back(t1);
 						break;
+					case 5:
+						t1 = stackTranslation.top();
+						stackTranslation.pop();
+						RPN_Tokens.push_back(t1);
+						RPN_Tokens.push_back(action);
+						break;
 					case -1: // Error
 						break;
 					default:

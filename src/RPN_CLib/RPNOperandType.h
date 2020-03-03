@@ -27,6 +27,7 @@ namespace RPN {
         OR_OPERATOR,
         AND_OPERATOR,
         NOT_OPERATOR,
+        IF_OPERATOR,
         JUST_PLUS,
         JUST_MINUS,
 
